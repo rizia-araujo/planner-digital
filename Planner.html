@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pt-br"> <!-- linguagem da página
+<html lang="pt-br"> <!-- linguagem da página -->
 <head>
-  <meta charset="UTF-8" /> <!-- suporte a caracteres especiais
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- design responsivo
+  <meta charset="UTF-8" /> <!-- suporte a caracteres especiais -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- design responsivo -->
   <title>Meu Planner ✨</title>
   <style>
     body {
@@ -15,7 +15,9 @@
       padding: 20px;
     }
 
-    h1 { <!-- título principal
+    <!-- título principal -->
+    h1 {
+      text-align: center;
       color: #c28ca3;
       font-size: 2em;
     }
@@ -29,7 +31,8 @@
       max-width: 400px;
     }
 
-    input, button { <!-- campo de texto e data
+   <!-- campo de texto e data -->
+    input, button { 
       font-family: inherit;
       padding: 10px;
       margin: 5px 0;
@@ -38,8 +41,9 @@
       width: 100%;
       box-sizing: border-box;
     }
-
-    button { <!-- botão para adicionar tarefa
+    
+    <!-- botão para adicionar tarefa -->
+    button {
       background-color: #eac4d5;
       border: none;
       cursor: pointer;
@@ -50,7 +54,8 @@
       background-color: #d8a7b1;
     }
 
-    ul { <!-- lista de tarefas
+    <!-- lista de tarefas -->
+    ul {
       list-style: none;
       padding: 0;
       margin-top: 20px;
@@ -92,14 +97,17 @@
     <ul id="taskList"></ul>
   </div>
 
-  <script> <!-- Java para as funcionalidades
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || []; <!-- tasks = array que guarda as tarefas, carregado do localStorage
+  <!-- Java para as funcionalidades -->
+  <script> 
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || []; <!-- tasks = array que guarda as tarefas, carregado do localStorage ou vazio -->
 
-    function saveTasks() { <!-- salva o array no localStorage
+    <!-- salva o array no localStorage -->
+    function saveTasks() { 
       localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
-    function renderTasks() { <!-- exibe as tarefas na tela com os botões de concluir e excluir
+    <!-- exibe as tarefas na tela com os botões de concluir e excluir -->
+    function renderTasks() { 
       const list = document.getElementById('taskList');
       list.innerHTML = '';
       tasks.forEach((task, index) => {
@@ -116,7 +124,8 @@
       });
     }
 
-    function addTask() { <!-- adiciona nova tarefa limpando os campos
+    <!-- adiciona nova tarefa limpando os campos -->
+    function addTask() { 
       const text = document.getElementById('taskInput').value.trim();
       const date = document.getElementById('dateInput').value;
       if (text && date) {
@@ -125,22 +134,26 @@
         renderTasks();
         document.getElementById('taskInput').value = '';
         document.getElementById('dateInput').value = '';
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.getItem('tasks'); <!-- limpa os campos após adicionar a tarefa -->
       }
     }
 
-    function toggleDone(index) { <!-- marca/desmarca a tarefa como concluída
+    <!-- marca/desmarca a tarefa como concluída -->
+    function toggleDone(index) { 
       tasks[index].done = !tasks[index].done;
       saveTasks();
       renderTasks();
     }
 
-    function deleteTask(index) { <!-- exclui a tarefa.
+    <!-- exclui a tarefa -->
+    function deleteTask(index) { 
       tasks.splice(index, 1);
       saveTasks();
       renderTasks();
     }
 
-    // Inicializa a
+    // Inicializa a lista de tarefas ao carregar a página
     renderTasks();
   </script>
 </body>

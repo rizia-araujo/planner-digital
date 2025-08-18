@@ -6,7 +6,7 @@
   <title>Meu Planner ✨</title>
   <style>
     body {
-      font-family: 'Cursiva', sans-serif;
+      font-family: 'Cursiva', 'dancing-script', cursiva;
       background: #fef6f9;
       color: #333;
       display: flex;
@@ -15,7 +15,7 @@
       padding: 20px;
     }
 
-    <!-- título principal -->
+    /* título principal */
     h1 {
       text-align: center;
       color: #c28ca3;
@@ -31,7 +31,7 @@
       max-width: 400px;
     }
 
-   <!-- campo de texto e data -->
+   /* campo de texto e data */
     input, button { 
       font-family: inherit;
       padding: 10px;
@@ -42,7 +42,7 @@
       box-sizing: border-box;
     }
     
-    <!-- botão para adicionar tarefa -->
+    /* botão para adicionar tarefa */
     button {
       background-color: #eac4d5;
       border: none;
@@ -54,7 +54,7 @@
       background-color: #d8a7b1;
     }
 
-    <!-- lista de tarefas -->
+    /* lista de tarefas */
     ul {
       list-style: none;
       padding: 0;
@@ -99,14 +99,15 @@
 
   <!-- Java para as funcionalidades -->
   <script> 
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || []; <!-- tasks = array que guarda as tarefas, carregado do localStorage ou vazio -->
+    // tasks = array que guarda as tarefas, carregado do localStorage ou vazio
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || []; 
 
-    <!-- salva o array no localStorage -->
+    // salva o array no localStorage
     function saveTasks() { 
       localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
-    <!-- exibe as tarefas na tela com os botões de concluir e excluir -->
+    // exibe as tarefas na tela com os botões de concluir e excluir
     function renderTasks() { 
       const list = document.getElementById('taskList');
       list.innerHTML = '';
@@ -124,7 +125,7 @@
       });
     }
 
-    <!-- adiciona nova tarefa limpando os campos -->
+    // adiciona nova tarefa limpando os campos
     function addTask() { 
       const text = document.getElementById('taskInput').value.trim();
       const date = document.getElementById('dateInput').value;
@@ -134,19 +135,17 @@
         renderTasks();
         document.getElementById('taskInput').value = '';
         document.getElementById('dateInput').value = '';
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        localStorage.getItem('tasks'); <!-- limpa os campos após adicionar a tarefa -->
       }
     }
 
-    <!-- marca/desmarca a tarefa como concluída -->
+    // marca/desmarca a tarefa como concluída
     function toggleDone(index) { 
       tasks[index].done = !tasks[index].done;
       saveTasks();
       renderTasks();
     }
 
-    <!-- exclui a tarefa -->
+    // exclui a tarefa
     function deleteTask(index) { 
       tasks.splice(index, 1);
       saveTasks();
